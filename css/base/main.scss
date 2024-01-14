@@ -1,0 +1,147 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
+
+:root {
+    --primary-color: #ffa31a;
+    --gray :  	#808080;
+    --light-black : #292929;
+    --black : #1b1b1b;
+}
+
+span {
+    pointer-events: none;
+    white-space:nowrap;
+}
+
+
+body {
+    background: var(--light-black);
+    font-family: 'Poppins';
+    margin: 0;
+    //min-height: 100%;
+    //height: 100%;
+    position: relative;
+    
+}
+
+ul {
+    list-style-type: none; 
+}
+
+
+.navbar {
+    background: black;
+    padding: 1em;
+    
+
+
+
+    .hub {
+        pointer-events: none;
+        color: white ;
+        display: block;
+        font-family: sans-serif;
+        font-weight: bold;
+        font-size: 9vw;
+        //position: absolute;
+        //top: 50%;
+        //left: 50%;
+        //transform: translate(-50%, -50%);
+        }
+
+        .hub span:nth-child(2) {
+            background: #FF9900;
+            color: black;
+            border-radius: 1vw;
+            padding: 0 1vw 1vw 1vw;
+            display: inline-block;
+        }
+
+
+    nav {
+        display: none;
+    }
+    
+    .container {
+        display: flex;
+        place-content: space-between;
+    }
+
+    .mobile-menu {
+        cursor: pointer;
+        width: 50px;
+    }
+}
+
+nav.menu-btn {
+    display: block;
+}
+
+nav {
+    position: fixed;
+    z-index: 999;
+    width: 66%;
+    left: 0;
+    top: 0;
+    background: #20272E;
+    height: 100vh;
+    padding: 1em;
+
+    ul.primary-nav {
+        margin-top: 5em;
+    }
+
+    li {
+        list-style: none;
+        a {
+            color: white;
+            text-decoration: none;
+            display: block;
+            padding: .5em;
+            font-size: 1.3em;
+            text-align: left;
+
+            &:hover {
+                font-weight: bold;
+            }
+        }
+    }
+}
+
+.mobile-menu-exit {
+    float: left;
+    margin: .5em;
+    cursor: pointer;
+}
+
+
+.admin {
+
+    text-transform: uppercase;
+    line-height:1;
+    text-align: center;
+    background: linear-gradient(90deg, rgba(186,148,62,1) 0%, rgba(236,172,32,1) 20%, rgba(186,148,62,1) 39%, rgba(249,244,180,1) 50%, rgba(186,148,62,1) 60%, rgba(236,172,32,1) 80%, rgba(186,148,62,1) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;	
+    animation: shine 1s infinite;
+    background-size: 200%;
+    background-position: left;
+  
+  }
+  @keyframes shine {
+    to{background-position: right}
+   
+  }
+
+.admin{
+color:gold;
+font-family: 'Merienda', cursive;
+animation-name:glow;
+animation-duration:1s;
+animation-iteration-count:infinite;
+animation-direction:alternate;
+}
+
+@keyframes glow{
+from{text-shadow:0px 0px 5px rgba(186,148,62,1),0px 0px 5px rgba(186,148,62,1);}
+to{text-shadow:0px 0px 20px rgba(236,172,32,1),0px 0px 20px rgba(186,148,62,1);}
+}

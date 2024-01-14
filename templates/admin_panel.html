@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel</title>
+    <!-- Bu kısmı düzenleerek kendi CSS dosyanızı ekleyebilirsiniz -->
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        .container {
+            text-align: center;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        form {
+            margin-top: 20px;
+        }
+
+        select {
+            padding: 8px;
+        }
+
+        button {
+            padding: 8px 16px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Admin Panel</h1>
+        <form method="post">
+            <label for="admin_option">Seçenek:</label>
+            <select name="admin_option" id="admin_option">
+                <option value="itiraf">İtiraf Yönetimi</option>
+                <option value="kullanici">Kullanıcı Yönetimi</option>
+                <option value="banlist">Ban Listesi</option>
+                <option value="anket">Anket Yönetimi</option>
+            </select>
+            <button type="submit">Git</button>
+        </form>
+    </div>
+</body>
+
+</html>

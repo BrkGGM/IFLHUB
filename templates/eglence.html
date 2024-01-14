@@ -1,0 +1,75 @@
+{% extends "base.html" %}
+
+{% block link %} 
+{% endblock %}
+
+{% block style %}
+<style>
+    .hero {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+
+    
+        .yolla{
+            background-color: rgb(186, 65, 202);
+        }
+    }
+
+    .hero a {
+        margin: .5em;
+        display: block;
+        background-color: cyan; 
+        width: 45%; /* Adjust as needed */
+        height: 45%;
+        border-radius: 2em;
+        
+    }
+    a.ship {
+        background-color: rgb(255, 62, 95);
+
+    }
+
+    a.anket {
+        background-color: rgb(0, 211, 0);
+    }
+    
+    .hero img {
+        width: 100%;
+        height: auto;
+        transform: scale(0.8);
+    }
+    
+</style>
+{% endblock %}
+
+{% block content %}
+    <section class="hero">
+        <a href="/eglence/muzik" ; class="muzik">
+            <img src="../static/images/muzik.svg" alt="Müzik">
+        </a>
+
+        <a href="/eglence/ship" class="ship">
+            <img src="../static/images/kalp.svg" alt="Ship">
+        </a>
+
+
+        <a href="/eglence/anket" class="anket">
+            <img src="../static/images/anket2.svg" alt="anket">
+        </a>
+        
+        <a href="/eglence/yolla" class="yolla">
+            <img src="../static/images/yaz.svg" alt="yolla">
+        </a>
+
+        
+
+        <!-- Add more <a> elements as needed -->
+    </section>
+{% endblock %}
+
+{% block script %}
+<script>
+    
+</script>
+{% endblock %}

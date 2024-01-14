@@ -1,0 +1,90 @@
+{% extends "base.html" %}
+
+{% block link %} 
+<link rel="stylesheet" href="../static/css/gonder-hesapsiz/main.css">
+{% endblock %}
+
+
+
+
+{% block content %}
+
+
+        <section class="hero">
+            <div class="container">
+                <h1>IFLHUB Hesapsız İtİraf Gönder</h1>
+                <h2>İtİraf gönder</h2>
+                <form method="POST" action="{{ url_for('hesapsizitiraf') }}">
+                    <textarea name="message" id="message" cols="50" rows="10" maxlength="300" placeholder="İtirafınızı buraya giriniz"></textarea>
+                    <br>
+
+                    
+                    <br>
+                    <input type="submit" class="send-message-cta" value="İtirafı Gönder">
+                </form>
+
+                <p style="color: white;">İtiraf göndererek <a style="color: #ffa31a;" href="kurallar">kuralları</a> ve <a style="color: #ffa31a;" href="kurallar">kullanım şartlarını</a> kabul etmiş sayılırsınız!</p>
+                            <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1146256223295113"
+                 crossorigin="anonymous"></script>
+            <!-- hesapsız-itiraf -->
+            <ins class="adsbygoogle"
+                 style="display:block"
+                 data-ad-client="ca-pub-1146256223295113"
+                 data-ad-slot="4000688675"
+                 data-ad-format="auto"
+                 data-full-width-responsive="true"></ins>
+            <script>
+                 (adsbygoogle = window.adsbygoogle || []).push({});
+            </script>
+
+        
+
+            </div>
+        </section>
+        <br>
+        <br>
+        <br>
+        <hr>
+        <section class="bilgi">
+
+
+            <h2>Ulaşmak için: </h2>
+            <ul>
+                
+                <h3>Instagram </h3>
+                <li> <a href="https://www.instagram.com/iflhub/">@iflhub</a> <a href="https://www.instagram.com/yozgat.m66/">@yozgat.m66</a> <a href="https://www.instagram.com/bay.beyaz/">@bay.beyaz</a></li>
+
+            </ul>
+
+            <p>
+                   <strong>Bilgi :</strong>  IFLHUB websitesinin herhangi okul veya kuruluş ile bir alakası yoktur. Sadece belirli bir topluluğun eğlence amaçlı kurduğu bir websitesidir. Websitesinin adındaki ifl herhangi bir okulu veya kuruluşu temsil etmemektedir!
+            </p>
+            <br><br><br>
+            <p>
+                <strong>Anahtar kelimeler (arama motorları için önemsemeyin) :</strong> IFLHUB İFLHUB itiraf websitesi ifl itiraf sifl itiraf anonim itiraf itiraf gönder instagram itiraf sayfası yozgat bay beyaz admin itiraf sayfası anonim okul websitesi ifl websitesi borsa istanbul adana itiraf sitesi 
+            </p>
+
+            
+        </section>
+
+
+{%endblock%}
+{% block script %}
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                const form = document.querySelector('form');
+
+                form.addEventListener('submit', function (event) {
+                    // Formun içindeki metin alanının değerini kontrol et
+                    const messageInput = document.getElementById('message');
+                    if (messageInput.value.trim() === '') {
+                        // Eğer metin alanı boşsa formu göndermeyi engelle
+                        event.preventDefault();
+                        alert('İtiraf boş olamaz. Lütfen bir şeyler yazın.');
+                    }
+                });
+            });
+        </script>
+
+{%endblock%}
+

@@ -1,0 +1,127 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap");
+:root {
+  --primary-color: #ffa31a;
+  --gray:	#808080;
+  --light-black: #292929;
+  --black: #1b1b1b;
+}
+
+span {
+  pointer-events: none;
+  white-space: nowrap;
+}
+
+body {
+  background: var(--light-black);
+  font-family: "Poppins";
+  margin: 0;
+  position: relative;
+}
+
+ul {
+  list-style-type: none;
+}
+
+.navbar {
+  background: black;
+  padding: 1em;
+}
+.navbar .hub {
+  pointer-events: none;
+  color: white;
+  display: block;
+  font-family: sans-serif;
+  font-weight: bold;
+  font-size: 9vw;
+}
+.navbar .hub span:nth-child(2) {
+  background: #FF9900;
+  color: black;
+  border-radius: 1vw;
+  padding: 0 1vw 1vw 1vw;
+  display: inline-block;
+}
+.navbar nav {
+  display: none;
+}
+.navbar .container {
+  display: flex;
+  place-content: space-between;
+}
+.navbar .mobile-menu {
+  cursor: pointer;
+  width: 50px;
+}
+
+nav.menu-btn {
+  display: block;
+}
+
+nav {
+  position: fixed;
+  z-index: 999;
+  width: 66%;
+  left: 0;
+  top: 0;
+  background: #20272E;
+  height: 100vh;
+  padding: 1em;
+}
+nav ul.primary-nav {
+  margin-top: 5em;
+}
+nav li {
+  list-style: none;
+}
+nav li a {
+  color: white;
+  text-decoration: none;
+  display: block;
+  padding: 0.5em;
+  font-size: 1.3em;
+  text-align: left;
+}
+nav li a:hover {
+  font-weight: bold;
+}
+
+.mobile-menu-exit {
+  float: left;
+  margin: 0.5em;
+  cursor: pointer;
+}
+
+.admin {
+  text-transform: uppercase;
+  line-height: 1;
+  text-align: center;
+  background: linear-gradient(90deg, rgb(186, 148, 62) 0%, rgb(236, 172, 32) 20%, rgb(186, 148, 62) 39%, rgb(249, 244, 180) 50%, rgb(186, 148, 62) 60%, rgb(236, 172, 32) 80%, rgb(186, 148, 62) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shine 1s infinite;
+  background-size: 200%;
+  background-position: left;
+}
+
+@keyframes shine {
+  to {
+    background-position: right;
+  }
+}
+.admin {
+  color: gold;
+  font-family: "Merienda", cursive;
+  animation-name: glow;
+  animation-duration: 1s;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+
+@keyframes glow {
+  from {
+    text-shadow: 0px 0px 5px rgb(186, 148, 62), 0px 0px 5px rgb(186, 148, 62);
+  }
+  to {
+    text-shadow: 0px 0px 20px rgb(236, 172, 32), 0px 0px 20px rgb(186, 148, 62);
+  }
+}/*# sourceMappingURL=main.css.map */

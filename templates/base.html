@@ -1,0 +1,174 @@
+<!-- base.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-042P485K0T"></script>
+    <link rel="shortcut icon" href="https://iflhub.com.tr/favicon.ico" />
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+    
+      gtag('config', 'G-042P485K0T');
+    </script>
+    <!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-KQLKW53B');</script>
+<!-- End Google Tag Manager -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IFLHUB</title>
+    <link rel="stylesheet" href="../static/css/base/main.css">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1146256223295113"
+     crossorigin="anonymous"></script>
+    {% block link%} {% endblock %}
+</head>
+
+{% block style %}
+{% endblock %}
+
+<style>
+
+    ::-webkit-scrollbar {
+    width: 10px;
+    }
+
+    /* Track */
+    ::-webkit-scrollbar-track {
+    background: #292929 ; 
+    }
+    
+    /* Handle */
+    ::-webkit-scrollbar-thumb {
+    background: #ffa31a; 
+    }
+
+    /* Handle on hover */
+    ::-webkit-scrollbar-thumb:hover {
+    background: #b8791b; 
+    }
+
+
+    .popuplar {
+        .flashes {
+        color: white;
+        li {
+            border: 3px solid red;
+            border-radius: 2em;
+            padding: 1em;
+            margin-right: 2em;
+            background-color: rgb(255, 97, 97) !important;
+        }
+        
+        
+
+
+        p {
+            color: red;
+        }
+    }
+
+    .bilgi {
+        color: white;
+        li {
+            border: 3px solid rgb(21, 0, 255);
+            border-radius: 2em;
+            padding: 1em;
+            margin-right: 2em;
+            background-color: rgb(97, 126, 255) !important;
+        }
+        
+        
+
+
+        p {
+            color: rgb(0, 2, 141);
+        }
+    }
+
+    }
+
+    
+
+</style>
+
+<body>
+    <div class="navbar">
+        <div class="container">
+            <img id="mobile-cta" class="mobile-menu" src="../static/images/hamburger-menu-svgrepo-com.svg" alt="Open Navigation">
+            
+            <div class="hub">
+                <span contenteditable="true">IFL</span>
+                <span contenteditable="true">HUB</span>
+            </div>
+
+            <nav>
+                <img id="mobile-exit" class="mobile-menu-exit" src="../static/images/exit.svg" alt="Close Navigation">
+                
+                <ul class="primary-nav">
+                    <li class="current"><a href="{{ url_for('hesabim') }}">Hesabım</a></li>
+                    <li><a href="{{ url_for('itiraf') }}">İtiraflar</a></li>
+                    <li><a href="{{ url_for('itirafgonder') }}">İtiraf Gönder</a></li>
+                    <li><a href="{{ url_for('sohbet') }}">Sohbet</a></li>
+                    <li><a href="{{ url_for('eglence') }}">Eğlence</a></li>
+                    <li><a href="https://kreosus.com/iflhub">Destek Ol</a></li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+
+
+    <section class="popuplar">
+        <div class="flashes">
+            {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                    <ul class="flashes">
+                        {% for message in messages %}
+                            <li>
+                                <p>Uyarı !</p> {{ message }}</li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+            {% endwith %}
+        </div>
+
+        <div class="bilgi">
+
+                {% if message %}
+                    <ul class="bilgi">
+                            <li>
+                                <p>Bilgi </p> {{ message }}</li>
+                    </ul>
+                {% endif %}
+
+        </div>
+
+    </section>
+
+
+        {% block content %} {% endblock %}
+
+
+    
+
+    {% block scripts %} {% endblock %}
+    <script>
+        const mobileBtn = document.getElementById('mobile-cta');
+        const nav = document.querySelector('nav');
+        const mobileBtnExit = document.getElementById('mobile-exit');
+        
+        mobileBtn.addEventListener('click', () => {
+            nav.classList.add('menu-btn');
+        });
+        
+        mobileBtnExit.addEventListener('click', () => {
+            nav.classList.remove('menu-btn');
+        });
+    </script>
+</body>
+</html>

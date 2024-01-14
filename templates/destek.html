@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% block link %} 
+<link rel="stylesheet" href="../static/css/itiraflar/main.css">
+{% endblock %}
+
+
+
+
+{% block content %}
+
+    <section class="hero">
+        <section class="itiraflar">
+            <p>Aslında fikrim buraya 5-10tl'lik bağış atma yeri koymaktı fakat bulduğum bağış siteleri hep yabancılar içindi ve en az bağış 5 dolar falandı ben de şimdilik boş bırakacağım. Nasıl yapılabileceği konusunda fikriniz varsa ricam Instagram'dan yazınız. Sadece iyi geri dönüşleriniz ve fikirleriniz bile manevi olarak çok iyi destekler :)
+            
+            Güncelleme : Destek olmak için buradaki reklamlara tıklayıp da çıkabilirsiniz</p>
+            <!--<script type="text/javascript" src="https://cdnjs.buymeacoffee.com/1.0.0/button.prod.min.js" data-name="bmc-button" data-slug="iflhub" data-color="#FFDD00" data-emoji=""  data-font="Cookie" data-text="Bize bir kahve al" data-outline-color="#000000" data-font-color="#000000" data-coffee-color="#ffffff" ></script>!-->
+            <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1146256223295113"
+            crossorigin="anonymous"></script>
+            <!-- destek -->
+            <ins class="adsbygoogle"
+            style="display:block"
+            data-ad-client="ca-pub-1146256223295113"
+            data-ad-slot="4604158057"
+            data-ad-format="auto"
+            data-full-width-responsive="true"></ins>
+            <script>
+         (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+        </section>
+    </section>
+
+    <script>
+        const mobileBtn = document.getElementById('mobile-cta')
+        nav = document.querySelector('nav')
+        mobileBtnExit = document.getElementById('mobile-exit');
+
+        mobileBtn.addEventListener('click', () => {
+            nav.classList.add('menu-btn');
+        })
+
+        mobileBtnExit.addEventListener('click', () => {
+            nav.classList.remove('menu-btn');
+        })
+    </script>
+{% endblock %}

@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+
+
+{% block link %} 
+<link rel="stylesheet" href="../static/css/hesabim/main.css">
+{% endblock %}
+
+
+
+<div class="hero">
+    
+    <ul>
+        {% block content %}
+            <div class="hesabim">
+                <h2>Hesabım</h2>
+                <div class="bilgiler"> 
+                    <h3>Hesap Bilgilerim</h3>
+                    <span>Takma Ad: 
+                        {% if current_user.name %}
+                        {{ current_user.name }}
+                        {% else %}
+                        Yok
+                        {% endif %}
+                    
+                    
+                    </span>
+                    <br>
+                    <span>Kullanıcı Adı: {{ current_user.username }}</span>
+                    <br>
+                    <span>Atılan İtiraflar: {{ current_user.confession_count }}</span>
+                    <br>
+
+                </div>
+
+                <div class="degistir">
+                    <h3>Bilgilerimi değiştir</h3>
+                    <p>Haftada bir değiştirebilirsin</p>
+                    <form method="POST" action="{{url_for('ad_degistir')}}" class="takma-deg">
+                        <h4>Takma adını değiştir</h4>
+                        <input type="input" class="name-change" name="ad" placeholder="{% if current_user.name %}
+                        {{ current_user.name }}
+                        {% else %}
+                        Yok
+                        {% endif %}">
+                        <button type="submit"><img src="../static/images/gonder.svg" alt="Değiştir" height="30px" width="30px"></button>
+                    </form>
+
+                    <form method="POST" action="{{url_for('kul_ad_degistir')}}" class="takma-deg">
+                        <h4>Kullanıcı adını değiştir</h4>
+                        <input type="input" class="name-change" name="ad" placeholder="{% if current_user.username %}
+                        {{ current_user.username }}
+                        {% else %}
+                        Yok
+                        {% endif %}">
+                        <button type="submit"><img src="../static/images/gonder.svg" alt=" Değiştir" height="30px" width="30px"></button>
+                    </form>
+
+                </div>
+
+
+            </div>
+        {% endblock %}
+    </ul>
+
+    
+
+</div>
+

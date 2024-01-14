@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en">
+  <head>
+      
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-042P485K0T"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+    
+      gtag('config', 'G-042P485K0T');
+    </script>
+
+  	<title>IFLHUB</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+	<link href="https://fonts.googleapis.com/css?family=Lato:300,400,700&display=swap" rel="stylesheet">
+
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+	<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1146256223295113"
+     crossorigin="anonymous"></script>
+	<link rel="stylesheet" href="../static/css/login/style.css">
+
+	</head>
+	<body class="img js-fullheight" style="background-image: url(../static/images/pcoda.jpg);background-color: rgb(190, 144, 59);">
+	<section class="ftco-section">
+		<div class="container">
+			<div class="row justify-content-center">
+				<div class="col-md-6 text-center mb-5">
+					<img src="../static/images/logo.png" width="350" height="150">
+				</div>
+			</div>
+			<div class="row justify-content-center">
+				<div class="col-md-6 col-lg-4">
+					<div class="login-wrap p-0">
+		      	<form method="POST" action="" class="signin-form">
+                    {{ form.hidden_tag() }}
+		      		<div class="form-group">
+			      			{{ form.username(class="form-control") }}
+		      		</div>
+	            <div class="form-group">
+		      			{{ form.password(class="form-control") }}
+	              
+	            </div>
+              <div class="form-group">
+	              {{ form.kod(class="form-control") }}
+	            </div>
+	            <div class="form-group">
+	            	{{ form.submit(class="form-control btn btn-primary submit px-3") }}		
+                {% with messages = get_flashed_messages() %}
+                  {% if messages %}
+                    {% for message in messages %}
+                        {{ message }}
+                    {% endfor %}
+                  {% endif %}
+                {% endwith %}
+	            </div>
+				<p>Kayıt olarak <a href="tos">Kullanım Şartlarını</a> kabul etmiş olursunuz.</p>
+	            <div class="form-group d-md-flex">
+	            	<div class="w-50">
+                        <!--
+		            	<label class="checkbox-wrap checkbox-primary">Beni Hatırla
+									  <input type="checkbox" checked name="chbox" value="1">
+									  <span class="checkmark"></span>
+									</label>-->
+								</div>
+								<div class="w-50 text-md-right">
+									<a href="{{ url_for('login')}}" style="color: #fff">Giriş Yap</a>
+									<br>
+									
+								</div>
+								
+								
+	            </div>
+	          </form>
+			  
+	          
+
+		      </div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section class="alt">
+		<hr>
+		<h2>Ulaşmak için: </h2>
+		<ul>
+			
+			<h3>Instagram </h3>
+			<li> <a href="https://www.instagram.com/iflhub/">@iflhub</a> <a href="https://www.instagram.com/yozgat.m66/">@yozgat.m66</a> <a href="https://www.instagram.com/bay.beyaz/">@bay.beyaz</a></li>
+
+		</ul>
+
+		<p>
+			   <strong>Bilgi :</strong>  IFLHUB websitesinin herhangi okul veya kuruluş ile bir alakası yoktur. Sadece belirli bir topluluğun eğlence amaçlı kurduğu bir websitesidir. Websitesinin adındaki ifl herhangi bir okulu veya kuruluşu temsil etmemektedir!
+		</p>
+		<br><br><br>
+		<p>
+			<strong>Anahtar kelimeler (arama motorları için önemsemeyin) :</strong> IFLHUB İFLHUB itiraf websitesi kayıt ol  
+		</p>
+		<h1>IFLHUB Kayıt Ol</h1>
+	</section>
+
+	<script src="../static/js/login/jquery.min.js"></script>
+  <script src="../static/js/login/popper.js"></script>
+  <script src="../static/js/login/bootstrap.min.js"></script>
+  <script src="../static/js/login/main.js"></script>
+
+	</body>
+</html>
+

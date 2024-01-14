@@ -1,0 +1,108 @@
+<!-- admin_kullanici.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Diğer başlık etiketleri -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <!-- Diğer başlık etiketleri -->
+</head>
+<style>
+    body {
+        background-color: #f8f9fa;
+        font-family: Arial, sans-serif;
+        padding-top: 50px;
+    }
+
+    .container {
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    h1 {
+        color: black;
+    }
+
+    table th,
+    table td {
+        text-align: center;
+    }
+
+    .btn-danger {
+        margin: 0;
+    }
+
+    .modal-title {
+        color: #dc3545;
+    }
+</style>
+
+<body>
+    <div class="container">
+        <h1>Kullanıcı Yönetimi</h1>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Kullanıcı Adı</th>
+                    <th>İtiraf Sayısı</th>
+                    <th>Son İtiraf Zamanı</th>
+                    <th>Tarayıcı Bilgisi</th>
+                    <th>IP Adresi</th>
+                    <th>İşlemler</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for user in users %}
+                    <tr>
+                        <td>{{ user.id }}</td>
+                        <td>{{ user.username }}</td>
+                        <td>{{ user.confession_count }}</td>
+                        <td>{{ user.last_confession_time }}</td>
+                        <td>{{ user.last_login_device }}</td>
+                        <td>{{ user.last_login_ip }}</td>
+                        <td>
+                            <!-- Ban Butonu ve Modal Trigger -->
+                            <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#banModal{{ user.id }}">
+                                Banla
+                            </button>
+
+                            <!-- Ban Modal -->
+                            <div class="modal fade" id="banModal{{ user.id }}" tabindex="-1" role="dialog" aria-labelledby="banModalLabel" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="banModalLabel">Kullanıcıyı Banla</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <form action="{{ url_for('admin_ban', user_id=user.id) }}" method="post">
+                                                <div class="form-group">
+                                                    <label for="banReason">Ban Sebebi:</label>
+                                                    <input type="text" class="form-control" id="banReason" name="ban_reason" required>
+                                                </div>
+                                                <button type="submit" class="btn btn-danger">Banla</button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</body>
+
+</html>

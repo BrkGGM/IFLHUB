@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel</title>
+    <!-- Bu kısmı düzenleerek kendi CSS dosyanızı ekleyebilirsiniz -->
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        .container {
+            text-align: center;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        form {
+            margin-top: 20px;
+        }
+
+        select {
+            padding: 8px;
+        }
+
+        button {
+            padding: 8px 16px;
+            cursor: pointer;
+        }
+        .anket-list {
+
+
+
+            ul {
+                left: 0;
+                display: flex;
+                
+                height: 20em;
+                width: 80%;
+                border-radius: 1em;
+                margin: 1em;
+
+                overflow-y: scroll;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Anket Yayınla</h1>
+        <form method="post">
+            <label for="admin_option">Anket Oluştur:</label>
+            <br>
+            <input placeholder="Başlık " name="baslik" type="text"><br>
+            <input placeholder="Kişi 1 " name="kisi1" type="text"><br>
+            <input placeholder="Kişi 2 " name="kisi2" type="text"><br>
+            <input placeholder="Etiket " name="tag" type="text"><br>
+            <button type="submit">Gönder</button>
+        </form>
+
+
+        <div class="anket-list">
+            <ul>
+            {% for anket in anketler %}
+               
+
+
+            <div class="cerceve">
+                <span>{{anket.baslik}}</span>
+                    
+                <form action="{{url_for('anket_duzenle', pid=anket.id)}}" method="POST">
+                    <li> <input type="text" name="baslik" placeholder="{{anket.baslik}}"></li>
+                    <li> <input type="text" name="sec1" placeholder="{{anket.sec1}}"> </li>
+                    <li> <input type="text" name="sec2" placeholder="{{anket.sec2}}"></li>
+                    <li> <input type="text" name="tag" placeholder="{{anket.tag}}"> </li>
+                    <li> <input type="text" placeholder="{{anket.id}}" disabled> </li>
+                    <button type="submit">Düzenle</button>
+                    <a href="{{url_for('anket_sil', pid=anket.id)}}">Anketi Sil</a>
+                    
+                </form>
+            </div>
+            {% endfor %}
+        </ul>
+        </div>
+
+    </div>
+</body>
+
+</html>

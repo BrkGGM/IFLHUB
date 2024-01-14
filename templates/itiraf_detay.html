@@ -1,0 +1,357 @@
+{% extends "base.html" %}
+
+
+{% block style %}
+<style>
+    .hero {
+        color: white;
+    }
+
+
+
+    a {
+        transition: transform .3s;
+        :hover {
+            transform: scale(1.5);
+        }
+    }
+
+    button{
+        transition: transform .3s;
+        :hover {
+            transform: scale(1.5);
+        }
+    }
+
+    .itiraf {
+        color: white ;
+        word-wrap: break-word;
+        background: rgb(120, 86, 24);
+        text-align: center;
+        padding: 2em 1em;
+        width: 80%;
+        margin: 2em 1em 2em 2em;
+        border-radius: 1em;
+        border: 3px solid;
+        border-color: var(--primary-color);
+    }
+
+    .like {
+        padding-left: 2em; 
+        span {
+            color: var(--primary-color);
+        }
+
+        a.begen {
+            padding-left: .8em;
+        }
+
+        a.kopyala {
+            padding-left: 6.2em;
+            text-decoration: inherit;
+            color: inherit;
+            
+        }
+        
+
+        a.paylas {
+            position: absolute ;
+            padding-left: 6.5em;
+            text-decoration: inherit;
+            color: inherit;
+            
+        }
+        
+        span.begen-yazı {
+            position: absolute ;
+            padding-left: .2em
+           
+        }
+
+        span.kopyala-yazi {
+            position: absolute ;
+            padding-left: 10em;
+            
+        }
+
+        span.paylas-yazi {
+            position: absolute ;
+            padding-left: 19.9em;
+            
+        }
+        
+    }
+
+    form {
+        display: flex;
+        flex: 1;
+        input, textarea {
+        padding: .8em;
+        margin: .2em 0 .2em 0;
+        border-radius: .3em;
+        border: 1px solid var(--primary-color);
+        box-sizing: border-box;
+        resize: none;
+        }
+
+        textarea {
+            border-radius: 2em;
+            display: flex;
+            width: 100%;
+            border: 3px solid var(--primary-color);
+            background-color: rgb(58, 58, 58);
+            color: white;
+            flex: 1;
+            font-size: 1em;
+            
+        }
+
+        textarea::placeholder {
+        color: white;
+        font-size: 1.1em;
+        }
+        
+        button {
+            img{
+                width: 40px;
+                height: 40px;
+
+            }
+            background-color: transparent ;
+            position: absolute;
+            right : 1rem;
+            border: none;
+            span {
+                display: none;
+            }
+            margin-top: 0.8em;
+        }
+    }
+
+    .gonder{
+        border-top: 2px solid gray;
+        position: fixed;
+        bottom: 0px;
+        background-color: #292929;
+        width: 100%;
+        padding-right: auto ;
+        display: flex;
+        align-items: center;
+    }
+
+    
+
+    .hr-text {
+    line-height: 1em;
+    position: relative;
+    outline: 0;
+    border: 0;
+    color: black;
+    text-align: center;
+    height: 1.5em;
+    opacity: .5;
+
+        &:before {
+            content: '';
+
+            background: linear-gradient(to right, transparent, #818078, transparent);
+            position: absolute;
+            left: 0;
+            top: 50%;
+            width: 100%;
+            height: 1px;
+        }
+        &:after {
+            content: attr(data-content);
+            position: relative;
+            display: inline-block;
+            color: black;
+
+            padding: 0 .5em;
+            line-height: 1.5em;
+            color: #ffa31a;
+            background-color: #292929;
+        }
+    }
+
+    .deger {
+        display: none;
+    }
+
+
+    .yorumlar {
+        color: wheatBlue;
+    }
+
+    .yorum {
+        color: white;
+        background-color: rgb(58, 58, 58);
+
+
+        border-radius: 2em;
+        margin-bottom: 1em;
+        word-wrap: break-word;
+        padding: .5em 3em .5em .2em;
+        width: 80%;
+        
+        strong.gonderen {
+            text-align: start;
+            margin-left: -1.5em;
+            margin-top: -2.5em;
+        }
+
+        strong.admin {
+            text-align: start;
+            margin-left: -1.5em;
+            margin-top: -2.5em;
+            color: gold;
+        }
+
+        a {
+            color: red;
+            text-decoration: inherit;
+            position: absolute;
+            text-align: start;
+            right: 4em;
+            top: 1em;
+            transition: transform .3s;
+            :hover {
+                transform: scale(1.5);
+            }
+        }
+
+        .icerik {
+            text-align: left;
+            margin-left: -1.5em;
+            margin-top: -.1em;
+            margin-right: -4em;
+        }
+
+        
+    }
+
+    ul {
+        li {
+          position: relative;  
+        }
+
+    }
+    
+
+
+</style>
+{% endblock %}
+
+{% block content %}
+
+<div class="itiraf">
+
+    <blockquote><q>{{ post.message }}</q></blockquote>
+    {% if post.user and post.user.name %}
+    <cite>- {{ post.user.name }}</cite>
+{% elif post.user and post.user.username %}
+    <cite>- {{ post.user.username }}</cite>
+    {% else %}
+        <cite>- Anonim</cite>
+    {% endif %}
+</div>
+
+<div class="like">
+    {% if current_user.has_liked_post(post) %}
+        <a class="begen" href="{{ url_for('like_action', post_id=post.id, action='unlike') }}"><img src="../static/images/unlike.png" alt="Unlike" height="50px" width="50px"></a>
+    {% else %}
+        <a class="begen" href="{{ url_for('like_action', post_id=post.id, action='like') }}"><img src="../static/images/like.png" alt="Like" height="50px" width="50px"></a>
+    {% endif %}
+    <a class="kopyala" href="#" onclick=myFunction();><img src="../static/images/copy.png" alt="Kopyala" height="50px" width="50px"></a>
+    <a class="paylas" href="#" onclick=share();><img src="../static/images/cursor.svg" alt="Paylaş" height="50px" width="50px"></a>
+    <br>
+
+    <span class="begen-yazı">   {{ post.likes.count() }} Beğeni</span>
+    <span class="kopyala-yazi"> Kopyala</span>
+    <span class="paylas-yazi"> Paylaş</span>
+</div>
+<br>
+<hr class="hr-text" data-content="Yorumlar">
+
+<div class="yorumlar">
+    <!-- itiraf_detay.html -->
+    <div class="yorumlar-kismi">
+        <ul>
+            {% for comment in post.comments|reverse %}
+            <li>
+                <div class="yorum">
+                    <blockquote> <strong class="{% if comment.user.username in adminler %}admin{% else %}gonderen{% endif %}">
+
+                        {% if comment.user.name %}
+                            {{ comment.user.name }}
+                        {% else %}
+                            {{ comment.user.username }}
+                        {% endif %}
+                    </strong>
+                         
+                    {% if comment.user == current_user %}
+                    <a href="{{url_for('delete_comment', yorum_id=comment.id)}}"><img src="../static/images/sil.svg" height="25px" width="25px" alt="Sil"></a>
+                    {% endif %}
+                        
+                    <p class="icerik">{{ comment.text }}</p>                    </blockquote>
+                </div>
+            </li>
+
+            
+
+            {% endfor %}
+        </ul>
+    </div>
+</div>
+
+<br>    
+<br>
+<div class="gonder">
+    <form method="POST" action="{{ url_for('add_comment', itiraf_id=post.id) }}">
+        <textarea name="comment_text" placeholder="Buraya yorum yazın" maxlength="300" required></textarea>
+    
+        <button type="submit"><img src="../static/images/gonder.svg" alt="Yorum Yap" height="50px" width="50px"></button>
+    </form>
+</div>
+
+
+<br>
+<input class="deger" type="text" value="{{ post.message }}" id="myInput">
+{% endblock %}
+
+{% block scripts %}
+<script>
+
+        const shareData = {
+        title: "İtiraf",
+        text: document.getElementById("myInput").value,
+        url: document.url,
+        };
+
+        
+        const resultPara = document.querySelector(".result");
+
+        // Share must be triggered by "user activation"
+        function share() {
+        try {
+            navigator.share(shareData);
+            resultPara.textContent = "Bağlantı başarı ile paylaşıldı.";
+        } catch (err) {
+            resultPara.textContent = `Error: ${err}`;
+        }
+        };
+
+
+
+
+
+    function myFunction() {
+        var copyText = document.getElementById("myInput");
+        copyText.select();
+        copyText.setSelectionRange(0, 99999);
+        navigator.clipboard.writeText(copyText.value);
+        alert("Kopyalanan Yazı: " + copyText.value);
+    }
+</script>
+
+{% endblock %}

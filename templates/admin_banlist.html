@@ -1,0 +1,78 @@
+<!-- admin_banlist.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ban Listesi</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- İstediğiniz başka CSS dosyalarını buraya ekleyebilirsiniz -->
+    <style>
+        body {
+            background-color: #f8f9fa;
+            font-family: Arial, sans-serif;
+            padding-top: 50px;
+        }
+
+        .container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            color: black;
+        }
+
+        table th,
+        table td {
+            text-align: center;
+        }
+
+        .btn-danger {
+            margin: 0;
+        }
+
+        .modal-title {
+            color: #dc3545;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Ban Listesi</h1>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Kullanıcı Adı</th>
+                    <th>Ban Sebebi</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tbody>
+                    {% for ban in bans %}
+                        <tr>
+                            <td>{{ ban.id }}</td>
+                            <td>{{ ban.user.username }}</td>
+                            <td>{{ ban.reason }}</td>
+                            <td>
+                                <!-- Unban Butonu ve Form -->
+                                <form action="{{ url_for('admin_unban', user_id=ban.user.id) }}" method="post">
+                                    <button type="submit" class="btn btn-success">Unban</button>
+                                </form>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+                
+            </tbody>
+        </table>
+    </div>
+</body>
+
+</html>

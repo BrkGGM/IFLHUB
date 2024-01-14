@@ -1,0 +1,145 @@
+{% extends "base.html" %}
+{% block link %} {% endblock %}
+{% block style %}
+<style>
+.test { display: flex; flex: 1; }
+.anket-list { list-style-type: none; }
+.anket-item {
+  margin-bottom: 20px;
+  padding: 10px;
+}
+
+.hero {
+
+    ul {
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+    word-wrap: break-word;
+    background: rgb(67, 255, 46);
+    text-align: center;
+    padding: 2em 1em;
+    width: 80%;
+    border-radius: 1em;
+    border: 3px solid;
+    border-color: rgb(7, 132, 0);
+
+
+}
+
+}
+
+
+
+.anket {
+  li {
+    position: relative;
+    word-wrap: break-word;
+    background: rgb(255, 0, 98);
+    text-align: center;
+    padding: 2em 0em;
+    width: 100%;
+    margin-bottom: .5em;
+    border-radius: 1em;
+    border: 3px solid;
+    border-color: rgb(177, 0, 68) ;
+
+
+
+    button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: transparent;
+      border: none;
+      cursor: pointer;
+      text-indent: -9999px;
+      border-radius: 1em;
+        
+
+    }
+
+    button.oyvermedi:hover {
+            background-color: rgb(0 0 0 / 50%); 
+
+            
+        }
+
+  }
+}
+
+
+</style>
+{% endblock %}
+    {% block content %}
+    <section class="hero">
+        <div class="anket-list">
+            
+
+            <div class="anket-item">
+                {% for anket in anketler|reverse %}
+                    <form method="post" action="{{ url_for('oy_ver', anket_id=anket.id) }}">
+                        <ul>
+                            {% if current_user.oy_verdi_mi(anket) %}
+                            {% if anket.sec1_oy == 0 and not anket.sec2_oy == 0 %}
+                                {% set sec1_oy_percent = 0 %}
+                                {% set sec2_oy_percent = 100 %}
+                            {% elif anket.sec2_oy == 0 and not anket.sec1_oy == 0 %}
+                                {% set sec1_oy_percent = 100 %}
+                                {% set sec2_oy_percent = 0 %}
+                            {% elif anket.sec1_oy == 0 and anket.sec2_oy == 0 %}
+                                {% set sec1_oy_percent = 0 %}
+                                {% set sec2_oy_percent = 0 %}
+                            {% else %}
+                                {% set sec1_oy_percent = (anket.sec1_oy / (anket.sec1_oy + anket.sec2_oy)) * 100 %}
+                                {% set sec2_oy_percent = (anket.sec2_oy / (anket.sec1_oy + anket.sec2_oy)) * 100 %}
+                            {% endif %}
+                        {% else %}
+                            {% set sec1_oy_percent = 0 %}
+                            {% set sec2_oy_percent = 0 %}
+                        {% endif %}
+                            <h1> ❓ {{anket.baslik}} ❓ </h1> 
+                            <span>  </span>
+                            <br>
+                            <div class="anket">
+                                {% if (anket.sec1_oy > anket.sec2_oy) and current_user.oy_verdi_mi(anket)%}
+                                <p> {{anket.sec1}} Kazanıyor 😊</p>
+                                <li style="background-color: rgb(97, 255, 97);border-color: green;">{{ anket.sec1 }} {% if current_user.oy_verdi_mi(anket) %} - <span>{{ anket.sec1_oy }} Oy ({{ sec1_oy_percent | int}}%)</span> {% else %} <button type="submit" name="oy" value="sec1">Oy Ver - {{ anket.sec1 }}</button> {% endif %}</li>
+                                <li style="background-color: rgb(255, 39, 39);border-color: rgb(175, 0, 0);">{{ anket.sec2 }} {% if current_user.oy_verdi_mi(anket) %} - <span>{{ anket.sec2_oy }} Oy ({{ sec2_oy_percent | int }}%)</span> {% else %} <button type="submit" name="oy" value="sec2">Oy Ver - {{ anket.sec2 }}</button>{% endif %}</li>
+                                {% endif %}
+                                {% if (anket.sec2_oy > anket.sec1_oy) and current_user.oy_verdi_mi(anket) %}
+                                <p> {{anket.sec1}} Kazanıyor 😊</p>
+                                <li style="background-color: rgb(255, 39, 39);border-color: rgb(175, 0, 0);">{{ anket.sec1 }} {% if current_user.oy_verdi_mi(anket) %} - <span>{{ anket.sec1_oy }} Oy ({{ sec1_oy_percent | int}}%)</span> {% else %} <button type="submit" name="oy" value="sec1">Oy Ver - {{ anket.sec1 }}</button> {% endif %}</li>
+                                <li style="background-color: rgb(97, 255, 97);border-color: green;">{{ anket.sec2 }} {% if current_user.oy_verdi_mi(anket) %} - <span>{{ anket.sec2_oy }} Oy ({{ sec2_oy_percent | int }}%)</span> {% else %} <button type="submit" name="oy" value="sec2">Oy Ver - {{ anket.sec2 }}</button>{% endif %}</li>
+                                {% endif %}
+                                {% if (anket.sec2_oy == anket.sec1_oy) and current_user.oy_verdi_mi(anket)  %}
+                                <div >
+                                <p>Ülke yine ikiye bölündü 😑</p>
+                                <li style="background-color: gray;border-color: darkgray;">{{ anket.sec1 }} {% if current_user.oy_verdi_mi(anket) %} - <span>{{ anket.sec1_oy }} Oy ({{ sec1_oy_percent | int}}%)</span> {% else %} <button class="oyvermedi" type="submit" name="oy" value="sec1">Oy Ver - {{ anket.sec1 }}</button> {% endif %}</li>
+                                <li style="background-color: gray;border-color: darkgray;">{{ anket.sec2 }} {% if current_user.oy_verdi_mi(anket) %} - <span>{{ anket.sec2_oy }} Oy ({{ sec2_oy_percent | int }}%)</span> {% else %} <button class="oyvermedi" type="submit" name="oy" value="sec2">Oy Ver - {{ anket.sec2 }}</button>{% endif %}</li>
+                                </div>
+                                
+                                {% endif %}
+                                {% if not current_user.oy_verdi_mi(anket)  %}
+                                <div >
+                                <li style="background-color: rgb(137, 255, 179);border-color: rgb(0, 147, 51);">{{ anket.sec1 }} {% if current_user.oy_verdi_mi(anket) %} - <span>{{ anket.sec1_oy }} Oy ({{ sec1_oy_percent | int}}%)</span> {% else %} <button class="oyvermedi" type="submit" name="oy" value="sec1">Oy Ver - {{ anket.sec1 }}</button> {% endif %}</li>
+                                <li style="background-color: rgb(137, 255, 179);border-color: rgb(0, 147, 51);">{{ anket.sec2 }} {% if current_user.oy_verdi_mi(anket) %} - <span>{{ anket.sec2_oy }} Oy ({{ sec2_oy_percent | int }}%)</span> {% else %} <button class="oyvermedi" type="submit" name="oy" value="sec2">Oy Ver - {{ anket.sec2 }}</button>{% endif %}</li>
+                                </div>
+                                
+                                {% endif %} 
+                            </div>    
+                            
+                        </ul>
+                    
+                    </form>
+                {% endfor %}
+            </div>
+
+
+        </div>
+    </section>
+{% endblock %}

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="dashboard-style.css">
+    <script src="dashboard-script.js" defer></script>
+    <title>Dashboard</title>
+</head>
+
+<body>
+    <div class="dashboard-container">
+        <header>
+            <div class="account-section">Hesabım</div>
+            <div class="options-section">☰</div>
+        </header>
+        <h1>Hello, you are logged in.</h1>
+        <a href="{{url_for('logout')}}">Press here to logout</a>
+    </div>
+</body>
+
+</html>

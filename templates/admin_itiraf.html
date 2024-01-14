@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- Ek CSS dosyalarınızı ekleyebilirsiniz -->
+</head>
+<body>
+
+<div class="container mt-5">
+    <h2>Admin Panel</h2>
+    
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <ul class="flashes">
+                {% for message in messages %}
+                    <li>{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    {% endwith %}
+
+    <table class="table mt-3">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>İtiraf</th>
+                <th>Kullanıcı Adı</th>
+                <th>İşlemler</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for itiraf in itiraflar %}
+                <tr>
+                    <td>{{ itiraf.id }}</td>
+                    <td>{{ itiraf.message }}</td>
+                    <td>{{ itiraf.user.username }}</td>
+                    <td>
+                        <form method="post" action="{{ url_for('delete_itiraf', itiraf_id=itiraf.id) }}" onsubmit="return confirm('Bu itirafı silmek istediğinize emin misiniz?');">
+                            <button type="submit" class="btn btn-danger">Sil</button>
+                        </form>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+</div>
+
+<!-- Ek JS dosyalarınızı ekleyebilirsiniz -->
+
+</body>
+</html>

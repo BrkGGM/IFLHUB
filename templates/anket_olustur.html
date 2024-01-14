@@ -1,0 +1,155 @@
+{% extends "base.html" %}
+{% block link %} {% endblock %}
+{% block style %}
+<style>
+.test { display: flex; flex: 1; }
+.anket-list { list-style-type: none; }
+.anket-item {
+  margin-bottom: 20px;
+  padding: 10px;
+}
+
+.hero {
+
+    ul {
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+    word-wrap: break-word;
+    background: rgb(10, 202, 255);
+    text-align: center;
+    padding: 2em 1em;
+    width: 80%;
+    border-radius: 1em;
+    border: 3px solid;
+    border-color: rgb(0, 68, 137) ;
+
+
+}
+
+}
+
+
+
+
+.anket-item{
+    
+    background-color: var(--primary-color);
+    text-align: center;
+    border: 3px solid #945900;
+    margin:3em 5em 0 5em;
+    border-radius: 3em;
+    form{
+        height: 120%;
+        
+        button {
+        color: var(--light-black);
+        border: 3px solid var(--light-black);
+        font-weight: bold;
+        border-radius: 5em;
+        margin-top: -.2em;
+        background-color: var(--primary-color);;
+        
+        margin-left: 3em;
+
+        &:hover {
+            background: var(--light-black);
+            color: white;
+        }
+    }
+
+
+    select {
+    color: var(--light-black);
+        border: 3px solid var(--light-black);
+        font-weight: bold;
+        border-radius: 5em;
+        margin-top: -.2em;
+        background-color: var(--primary-color);;
+
+        &:hover {
+            background: var(--light-black);
+            color: white;
+        }
+    }
+
+    }
+
+    input {
+        padding: .2em;
+        margin: .2em 0 .2em 1em;
+        border-radius: .3em;
+        border: 1px solid #945900;
+        box-sizing: border-box;
+        resize: none;
+        }
+
+        input {
+            border-radius: 2em;
+            display: flex;
+            width: 80%;
+            border: 3px solid #945900;
+            background-color: white;
+            color: black;
+            flex: 1;
+            font-size: 1em;
+            
+        }
+
+        input::placeholder {
+        color: black;
+        font-size: 1.1em;
+        }
+
+}
+
+</style>
+{% endblock %}
+{% block content %}
+    <section class="hero">
+        <div class="anket-list">
+
+            <div class="anket-item">
+                <form method="post" action="#">
+                    <h1>Oylama Oluştur</h1>
+                    <input placeholder="Başlık " id="baslik" name="baslik" type="text"><br>
+                    <input placeholder="Seçenek 1 " id="kisi1" name="kisi1" type="text"><br>
+                    <input placeholder="Seçenek 2 " id="kisi2" name="kisi2" type="text"><br>
+
+                    <select name="tag" id="tag" onchange="disableOptions()">
+                        <option value="ship">Ship</option>
+                        <option value="anket" selected>Anket</option>
+                    </select>
+
+
+                    <button type="submit">Gönder</button>
+                </form>
+            </div>
+        </div>
+    </section>
+{% endblock %}
+
+
+{% block scripts %}
+<script>
+    function disableOptions() {
+
+        if (document.getElementById('tag').value === 'ship') {
+            document.getElementById('kisi1').disabled = true;
+            document.getElementById('kisi2').disabled = true;
+            document.getElementById('kisi1').placeholder = "Deaktif"
+            document.getElementById('kisi2').placeholder = "Deaktif"
+            document.getElementById('kisi1').value = ""
+            document.getElementById('kisi2').value = ""
+            document.getElementById('baslik').placeholder = "Kişi 1 V Kişi 2"
+        } else {
+            document.getElementById('kisi1').disabled = false;
+            document.getElementById('kisi2').disabled = false;
+            document.getElementById('kisi1').placeholder = "Seçenek 1"
+            document.getElementById('kisi2').placeholder = "Seçenek 2"
+            document.getElementById('baslik').placeholder = "Başlık"
+        }
+    }
+    disableOptions()
+</script>
+{% endblock %}

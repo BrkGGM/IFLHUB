@@ -1,0 +1,189 @@
+{% extends "base.html" %}
+
+
+{% block style %}
+<style>
+
+.chat {
+    border: 1px solid black;
+
+    .tek {
+        background: rgb(71, 51, 14);
+        border: 1px solid black;
+        
+    }
+
+    .cift {
+        background: rgb(120, 86, 24);
+    }
+
+
+    ul {
+        display: block;
+        position: absolute;
+        background: rgb(120, 86, 24);
+        text-align: left;
+        height: 600%;
+        width: 80%;
+        margin: 1em 1em -5em 1.5em;
+        border-radius: 1em;
+        border: 3px solid ;
+        border-color: var(--primary-color);
+        overflow-y: scroll;
+        
+    }
+
+    li {
+        word-wrap: break-word;
+        margin-left: -4em;
+        p{
+            display: inline;
+        }
+        }
+
+}
+
+.gonder{
+        border-top: 2px solid gray;
+        position: fixed;
+        bottom: 0px;
+        background-color: #292929;
+        width: 100%;
+        padding-right: auto ;
+        display: flex;
+        align-items: center;
+    }
+
+form {
+    display: flex;
+    flex: 1;
+    input, textarea {
+    padding: .8em;
+    margin: .2em 0 .2em 0;
+    border-radius: .3em;
+    border: 1px solid var(--primary-color);
+    box-sizing: border-box;
+    resize: none;
+    }
+
+    textarea {
+        border-radius: 2em;
+        display: flex;
+        width: 100%;
+        border: 3px solid var(--primary-color);
+        background-color: rgb(58, 58, 58);
+        color: white;
+        flex: 1;
+        font-size: 1em;
+        
+    }
+
+    textarea::placeholder {
+    color: white;
+    font-size: 1.1em;
+    }
+    
+    button {
+        img{
+            width: 40px;
+            height: 40px;
+
+        }
+        background-color: transparent ;
+        position: absolute;
+        right : 1rem;
+        border: none;
+        
+        span {
+            display: none;
+        }
+        
+    }
+}
+
+</style>
+
+{% endblock %}
+{% block content %}
+
+<div class="chat">
+    <ul>
+        {% for mesaj in mesajlar %}
+        <li>
+            
+                {% if mesaj.id % 2 == 0 %}
+                <div class="cift">
+                    <blockquote>
+                         
+                        {% if mesaj.user and mesaj.user.name %}
+                        <strong class="{% if mesaj.user.username in adminler %}admin gonderen{% else %}gonderen{% endif %}">{{ mesaj.user.name }} : </strong>
+                        {% elif mesaj.user and mesaj.user.username %}
+                        <strong class="{% if mesaj.user.username in adminler %}admin gonderen{% else %}gonderen{% endif %}">{{ mesaj.user.username }} : </strong>
+                         {% endif %}
+                         
+                         <p class="icerik">{{ mesaj.text }}</p></blockquote>
+                </div>
+                {% else %}
+                <div class="tek">
+                    <blockquote> {% if mesaj.user and mesaj.user.name %}
+                        <strong class="{% if mesaj.user.username in adminler %}admin gonderen{% else %}gonderen{% endif %}">{{ mesaj.user.name }} : </strong>
+                        {% elif mesaj.user and mesaj.user.username %}
+                        <strong class="{% if mesaj.user.username in adminler %}admin gonderen{% else %}gonderen{% endif %}">{{ mesaj.user.username }} : </strong>
+                         {% endif %}
+                         <p class="icerik">{{ mesaj.text }}</p></blockquote>
+                </div>
+                {% endif %}
+            
+       </li>
+        
+        
+
+        {% endfor %}
+    </ul>
+
+</div>
+
+
+
+<div class="gonder">
+    <form method="POST" action="{{ url_for('mesajat') }}">
+        <textarea id="metingir" name="comment_text" placeholder="Mesaj gönder"maxlength="300" required></textarea>
+    
+        <button type="submit"><img src="../static/images/gonder.svg" alt="Mesaj gönder" height="50px" width="50px"></button>
+    </form>
+</div>
+
+
+
+{% endblock %}
+
+
+
+
+{% block scripts %}
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script>
+    $(document).ready(function() {
+    function scrollToBottom() {
+        var chatUl = $(".chat ul");
+        chatUl.scrollTop(chatUl.prop("scrollHeight"));
+    }
+
+
+
+    setInterval(function() {
+        var metin = document.getElementById("metingir").value;
+        if (!metin) {
+            window.location.reload(1);
+        }
+        
+    }, 5000); // 5000 milisaniye (5 saniye) aralıklarla kontrol et
+    
+    
+
+    
+    scrollToBottom(); // Scroll to the bottom when the page is loaded
+    });
+
+</script>
+{% endblock %}

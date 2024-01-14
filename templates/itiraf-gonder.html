@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+
+{% block link %} 
+<link rel="stylesheet" href="../static/css/gonder/main.css">
+{% endblock %}
+
+
+
+
+{% block content %}
+
+
+        <section class="hero">
+            <div class="container">
+                <h1>İtİraf gönder</h1>
+                <form method="POST" action="{{ url_for('itirafgonder') }}">
+                    <textarea name="message" id="message" cols="50" rows="10" maxlength="300" placeholder="İtirafınızı buraya giriniz"></textarea>
+                    <br>
+                    <div class="cbox">
+                        <label class="container">Anonim İtiraf
+                            <input type="checkbox" name="anonim_itiraf" checked>
+                            <span class="checkmark"></span>
+                        </label>
+                    </div>
+                    
+                    <br>
+                    <input type="submit" class="send-message-cta" value="İtirafı Gönder">
+                </form>
+
+                <p style="color: white;">İtiraf göndermeden önce <a style="color: #ffa31a;" href="kurallar">kurallara</a> bir göz at!</p>
+
+        {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                    <ul class="flashes">
+                        {% for message in messages %}
+                            <li>{{ message }}</li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+            {% endwith %}
+        
+
+            </div>
+        </section>
+
+
+{%endblock%}
+{% block script %}
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                const form = document.querySelector('form');
+
+                form.addEventListener('submit', function (event) {
+                    // Formun içindeki metin alanının değerini kontrol et
+                    const messageInput = document.getElementById('message');
+                    if (messageInput.value.trim() === '') {
+                        // Eğer metin alanı boşsa formu göndermeyi engelle
+                        event.preventDefault();
+                        alert('İtiraf boş olamaz. Lütfen bir şeyler yazın.');
+                    }
+                });
+            });
+        </script>
+
+{%endblock%}
+

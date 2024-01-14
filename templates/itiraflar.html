@@ -1,0 +1,94 @@
+{% extends "base.html" %}
+
+{% block link %} 
+<link rel="stylesheet" href="../static/css/itiraflar/main.css">
+{% endblock %}
+
+
+
+
+{% block content %}
+
+
+    <section class="hero">
+        <section class="itiraflar">
+            <div class="container">
+
+                    
+                        <h2>İtiraflar Listesi</h2>
+                        <ul>
+                            {% for itiraf in itiraflar|reverse %}
+                            
+                                <li>
+                                    
+                                    <div class="kutucuk">
+
+                                        <a href="/itiraf/{{ itiraf.id }}" style="text-decoration: inherit;color: inherit;">
+                                            <blockquote><q>{{ itiraf.message }}
+                                            </q></blockquote>
+                                            {% if itiraf.user and itiraf.user.name %}
+                                                <cite class="{% if itiraf.user.username in adminler %}admin{% else %}gonderen{% endif %}">- {{ itiraf.user.name }}</cite>
+                                            {% elif itiraf.user and itiraf.user.username %}
+                                                <cite >- {{ itiraf.user.username }}</cite>
+                                            {% else %}
+                                                <cite>- Anonim</cite>
+                                            {% endif %}
+                                            </a>
+                                            <div class="begen">
+                                            {% if current_user.has_liked_post(itiraf) %}
+                                                <a class="begen" href="{{ url_for('like_action', post_id=itiraf.id, action='unlike') }}"><img src="../static/images/unlike.png" alt="Unlike" height="50px" width="50px"></a>
+                                            {% else %}
+                                                <a class="begen" href="{{ url_for('like_action', post_id=itiraf.id, action='like') }}"><img src="../static/images/like.png" alt="Like" height="50px" width="50px"></a>
+                                            {% endif %}
+
+
+                                            {% if current_user.has_commented(itiraf) %}
+                                            <a class="yorum" href="/itiraf/{{ itiraf.id }}"><img src="../static/images/yorum-2.png" alt="Unlike" height="50px" width="50px"></a>
+                                            {% else %}
+                                            <a class="yorum" href="/itiraf/{{ itiraf.id }}"><img src="../static/images/yorum.png" alt="Unlike" height="50px" width="50px"></a>
+                                            {% endif %}
+
+
+
+                                               
+                                                
+
+                                        </div>
+
+
+                                        
+                                    </div>
+                                
+                                </li>
+                            
+                            {% endfor %}
+                        </ul>
+                    
+
+            </div>
+        </section>
+    </section>
+
+    {% endblock %}
+
+{% block scripts%}
+<script>
+
+    document.addEventListener("DOMContentLoaded", function() {
+    // Sayfa yüklendiğinde kaydırma pozisyonunu al
+    var scrollPosition = localStorage.getItem("scrollPosition");
+
+    // Kaydırma pozisyonu varsa, sayfayı o konuma kaydır
+    if (scrollPosition) {
+        window.scrollTo(0, scrollPosition);
+    }
+
+    // Sayfa yenilendiğinde kaydırma pozisyonunu güncelle
+    window.addEventListener("beforeunload", function() {
+        localStorage.setItem("scrollPosition", window.scrollY);
+    });
+    });
+
+</script>
+
+{% endblock %}
