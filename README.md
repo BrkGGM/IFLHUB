@@ -19,6 +19,9 @@ Sohbet edebilirsiniz.
 ### Eğlence
 Haftanın müziğini, shipleri, anketleri oylayabilirsiniz. Ya da ship ve anket gönderebilirsiniz.
 
+### Hesap sistemi
+Velilerin girmesin engellemek için 'Kayıt Kodu' sistemi vardır. Kullanıcılar kullanıcı adı belirledikten sonra 'takma ad' belirleyebilirler.
+
 ### Admin yönetimi
 Adminler için kullanması kolay bir admin menüsü vardır.
 
